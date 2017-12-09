@@ -1,11 +1,15 @@
 import React, {Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchStockData } from '../actions/index';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = { term: ''};
     this.enterInput = this.enterInput.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   enterInput(event) {
@@ -14,6 +18,8 @@ export default class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+    this.props.fetchStockData(this.state.term);
+    this.setState({ term: ''});
   }
 
   render() {
@@ -25,3 +31,9 @@ export default class SearchBar extends Component {
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchStockData }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);

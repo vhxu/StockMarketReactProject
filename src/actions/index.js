@@ -9,6 +9,7 @@ export function fetchStockData(stock) {
   const url = `${ROOT_URL}&symbol=${stock}`;
   const request = axios.get(url);
 
+
   return {
     type: FETCH_STOCK_DATA,
     payload: request
