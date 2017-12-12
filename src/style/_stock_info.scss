@@ -1,0 +1,18 @@
+.company-name {
+  display: flex;
+  justify-content: center;
+}
+
+.stock-info {
+  display: flex;
+
+  .info {
+    display: flex;
+    flex-basis: 35%;
+    justify-content: space-between;
+  }
+
+  .news {
+    flex-basis: 65%l
+  }
+}

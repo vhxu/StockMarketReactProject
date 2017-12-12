@@ -1,15 +1,17 @@
 .list-chart {
   display: flex;
+
+  .chart-info {
+    flex-basis: 75%;
+  }
 }
 
-#Stock-list {
-  flex-basis: 35%;
+.stock-list {
+  flex-basis: 25%;
 }
 
-.chart-info {
-  flex-basis: 65%;
-}
 
-#Stock-price {
+
+.stock-price {
   display: flex;
 }

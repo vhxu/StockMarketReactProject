@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Highcharts from 'highcharts/highstock';
+import { selectStock } from '../actions/index';
+import { bindActionCreators} from 'redux';
 
 import StockInfo from '../components/stock_info';
 
@@ -10,14 +12,13 @@ class StockList extends Component {
     if (this.props.stock.length > 0) {
       return this.props.stock.map((stock, i) => {
         return (
-          <div id='Stock-price'key={i}>
+          <div className='stock-price'key={i} onClick={() => this.props.selectStock(stock)}>
             <div>
               <div>{stock.data.quote.symbol}</div>
               <div>{stock.data.quote.companyName}</div>
             </div>
-
             <div>{stock.data.quote.close}</div>
-            <div>{100 * stock.data.quote.changePercent +'%'}</div>
+            <div>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
           </div>
 
         )
@@ -26,9 +27,9 @@ class StockList extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.stock.length > 0) {
-      var timeSeries = this.props.stock[0].data.chart;
-      console.log(this.props.stock);
+    //  if(this.props.stock.length > 0) {
+      var timeSeries = this.props.activeStock.data.chart;
+      console.log(this.props.activeStock);
       var data = timeSeries.map(stockData => {
         return [new Date(stockData.date).getTime(), stockData.close];
       })
@@ -38,11 +39,11 @@ class StockList extends Component {
           selected: 1
         },
         series:[{
-          name: this.props.stock[0].data.quote.symbol,
+          name: this.props.activeStock.data.quote.symbol,
           data: data
         }]
       });
-    }
+    // }
   }
 
 
@@ -50,10 +51,10 @@ class StockList extends Component {
     if (this.props.stock) {
       return (
         <div className='list-chart'>
-          <div>{this.renderStockList()}</div>
+          <div className='stock-list'>{this.renderStockList()}</div>
           <div className='chart-info'>
             <div id='Chart'></div>
-            <StockInfo stockInfo={this.props.stock[0]}/>
+            <StockInfo stockInfo={this.props.activeStock}/>
           </div>
         </div>
 
@@ -64,7 +65,12 @@ class StockList extends Component {
 
 function mapStateToProps(state) {
   console.log(state);
-  return { stock: state.stock};
+  return { stock: state.stock,
+  activeStock: state.activeStock};
 }
 
-export default connect(mapStateToProps)(StockList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectStock: selectStock }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StockList);
