@@ -5,6 +5,7 @@ import { selectStock } from '../actions/index';
 import { bindActionCreators} from 'redux';
 
 import StockInfo from '../components/stock_info';
+import StockBar from '../components/stock_bar';
 
 class StockList extends Component {
 
@@ -17,7 +18,6 @@ class StockList extends Component {
               <div>{stock.data.quote.symbol}</div>
               <div>{stock.data.quote.companyName}</div>
             </div>
-            <div>{stock.data.quote.close}</div>
             <div>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
           </div>
 
@@ -53,6 +53,7 @@ class StockList extends Component {
         <div className='list-chart'>
           <div className='stock-list'>{this.renderStockList()}</div>
           <div className='chart-info'>
+            <StockBar stockInfo={this.props.activeStock}/>
             <div id='Chart'></div>
             <StockInfo stockInfo={this.props.activeStock}/>
           </div>
