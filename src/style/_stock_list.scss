@@ -3,13 +3,11 @@
 }
 
 #Stock-list {
-  flex-basis: 20%;
+  flex-basis: 35%;
 }
 
-#Chart {
-  flex-basis: 80%;
-  width:100%;
-  height: 100%;
+.chart-info {
+  flex-basis: 65%;
 }
 
 #Stock-price {
