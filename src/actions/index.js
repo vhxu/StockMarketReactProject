@@ -18,6 +18,8 @@ export function fetchStockData(stock) {
 }
 
  export function selectStock(stock) {
+   const url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/1d';
+   const request = axio.get(url);
    return {
      type: STOCK_SELECTED,
      payload: stock

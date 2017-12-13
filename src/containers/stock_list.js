@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Highcharts from 'highcharts/highstock';
 import { selectStock } from '../actions/index';
 import { bindActionCreators} from 'redux';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 import StockInfo from '../components/stock_info';
 import StockBar from '../components/stock_bar';
@@ -17,6 +18,11 @@ class StockList extends Component {
             <div>
               <div>{stock.data.quote.symbol}</div>
               <div>{stock.data.quote.companyName}</div>
+            </div>
+            <div className ='sparklines'>
+              <Sparklines  data={[5, 10, 5, 20]}>
+                <SparklinesLine color="green" style={{fill: 'none'}} />
+              </Sparklines>
             </div>
             <div>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
           </div>
