@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Highcharts from 'highcharts/highstock';
 import { selectStock } from '../actions/index';
 import { bindActionCreators} from 'redux';
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 import StockInfo from '../components/stock_info';
 import StockBar from '../components/stock_bar';
@@ -12,16 +12,27 @@ class StockList extends Component {
 
   renderStockList() {
     if (this.props.stock.length > 0) {
+      console.log(this.props.stock);
       return this.props.stock.map((stock, i) => {
+        var dataToday = stock.data.chart.slice(90,479).map((dayOneData, i) => {
+          if (dayOneData.high != 0) {
+            return dayOneData.high;
+          } else {
+            return  stock.data.chart[i-5+90].high;
+          }
+
+        })
+        console.log(dataToday);
         return (
-          <div className='stock-price'key={i} onClick={() => this.props.selectStock(stock)}>
+          <div className='stock-price'key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
             <div>
               <div>{stock.data.quote.symbol}</div>
               <div>{stock.data.quote.companyName}</div>
             </div>
             <div className ='sparklines'>
-              <Sparklines  data={[5, 10, 5, 20]}>
+              <Sparklines  data={dataToday}>
                 <SparklinesLine color="green" style={{fill: 'none'}} />
+                <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
               </Sparklines>
             </div>
             <div>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
@@ -71,7 +82,6 @@ class StockList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return { stock: state.stock,
   activeStock: state.activeStock};
 }

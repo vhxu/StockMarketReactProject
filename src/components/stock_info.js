@@ -21,24 +21,30 @@ class StockInfo extends Component {
       const info = this.props.stockInfo.data.quote;
       return (
         <div className='stock-info'>
-          <div className='info'>
-            <div className='stock-info1'>
-              <div>Open {info.open}</div>
-              <div>Prev Close {info.previousClose}</div>
-              <div>High {info.high}</div>
-              <div>Low {info.low}</div>
-              <div>Mkt Cap {info.marketCap}</div>
-            </div>
-            <div className='stock-info2'>
-              <div>Vol {info.latestVolume}</div>
-              <div>P/E {info.peRatio}</div>
-              <div>52W High {info.week52High}</div>
-              <div>52W Low {info.week52Low}</div>
-              <div> Avg Vol {info.avgTotalVolume}</div>
+          <div>
+            <div>Stats</div>
+            <div className='info'>
+              <div className='stock-info1'>
+                <div>Open {info.open.toFixed(2)}</div>
+                <div>Prev Close {info.previousClose.toFixed(2)}</div>
+                <div>High {info.high.toFixed(2)}</div>
+                <div>Low {info.low.toFixed(2)}</div>
+                <div>Mkt Cap {(info.marketCap/1000000000).toFixed(1)}B</div>
+              </div>
+              <div className='stock-info2'>
+                <div>Vol {(info.latestVolume/1000000).toFixed(1)}M</div>
+                <div>P/E {info.peRatio}</div>
+                <div>52W High {info.week52High.toFixed(2)}</div>
+                <div>52W Low {info.week52Low.toFixed(2)}</div>
+                <div> Avg Vol {(info.avgTotalVolume/1000000).toFixed(1)}M</div>
+              </div>
             </div>
           </div>
-          <div className='news'>
-            {this.renderNews()}
+          <div>
+            <div>News</div>
+            <div className='news'>
+              {this.renderNews()}
+            </div>
           </div>
         </div>
 

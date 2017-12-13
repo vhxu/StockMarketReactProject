@@ -8,7 +8,7 @@ export const FETCH_STOCK_DATA = 'FETCH_STOCK_DATA';
 export const STOCK_SELECTED = 'STOCK_SELECTED';
 
 export function fetchStockData(stock) {
-  const url = 'https://api.iextrading.com/1.0/stock/'+stock+'/batch?types=quote,news,chart&range=5y&last=10';
+  const url = 'https://api.iextrading.com/1.0/stock/'+stock+'/batch?types=quote,news,chart&range=1d&last=10';
   const request = axios.get(url);
 
   return {
@@ -18,10 +18,10 @@ export function fetchStockData(stock) {
 }
 
  export function selectStock(stock) {
-   const url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/1d';
-   const request = axio.get(url);
+   const url = 'https://api.iextrading.com/1.0/stock/'+stock+'/batch?types=quote,news,chart&range=5y&last=10';
+   const request = axios.get(url);
    return {
      type: STOCK_SELECTED,
-     payload: stock
+     payload: request
    };
  }
