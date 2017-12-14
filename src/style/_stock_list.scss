@@ -11,15 +11,42 @@
 }
 
 
-
 .stock-price {
   display: flex;
-  justify-content: space-between;
+  // height: 50px;
+  align-items: center;
+  justify-content: center;
+  // outline: 1px solid black;
+
+  .symbol-name {
+    flex: 2;
+    // outline: 1px solid black;
+  }
 
   .sparklines {
-    width: 85px;
-    height: 85px;
-    margin: 0;
-    padding: 0;
+
+    height: 40px;
+    padding-top: 10px;
+    // outline: 1px solid black;
+    flex: 1;
+
+    // margin: 0;
+    // padding: 0;
   }
+
+  .percent-change {
+    display: flex;
+    flex: 2;
+    color: white;
+    justify-content: center;
+
+    div {
+      border-radius: 5px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      width: 70px;
+      text-align: center;
+    }
+  }
+
 }

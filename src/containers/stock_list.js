@@ -14,28 +14,35 @@ class StockList extends Component {
     if (this.props.stock.length > 0) {
       console.log(this.props.stock);
       return this.props.stock.map((stock, i) => {
+        if (stock.data.quote.change > 0) {
+          var stockColor = '#29ce9c';
+        } else {
+          var stockColor = '#fe4f36';
+        }
         var dataToday = stock.data.chart.slice(90,479).map((dayOneData, i) => {
           if (dayOneData.high != 0) {
             return dayOneData.high;
           } else {
-            return  stock.data.chart[i-5+90].high;
+            return  stock.data.chart[400].high;
           }
 
         })
         console.log(dataToday);
         return (
           <div className='stock-price'key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
-            <div>
+            <div className='symbol-name'>
               <div>{stock.data.quote.symbol}</div>
               <div>{stock.data.quote.companyName}</div>
             </div>
-            <div className ='sparklines'>
-              <Sparklines  data={dataToday}>
-                <SparklinesLine color="green" style={{fill: 'none'}} />
+            <div className='sparklines'>
+              <Sparklines  data={dataToday} width={400} height={200}>
+                <SparklinesLine color={stockColor} style={{fill: 'none'}} />
                 <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
               </Sparklines>
             </div>
-            <div>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
+            <div className='percent-change'>
+                <div style={{backgroundColor:stockColor}}>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
+            </div>
           </div>
 
         )
