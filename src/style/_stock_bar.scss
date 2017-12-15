@@ -2,8 +2,14 @@
   .stock-bar-price {
     font-size: 30px;
   }
+
+  .stock-bar-info {
+    margin-bottom: 10px;
+  }
+
   .stock-bar-info div {
     display: flex;
     justify-content: space-between;
+
   }
 }

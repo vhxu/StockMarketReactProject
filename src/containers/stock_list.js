@@ -19,14 +19,10 @@ class StockList extends Component {
         } else {
           var stockColor = '#fe4f36';
         }
-        var dataToday = stock.data.chart.slice(90,479).map((dayOneData, i) => {
-          if (dayOneData.high != 0) {
-            return dayOneData.high;
-          } else {
-            return  stock.data.chart[400].high;
-          }
-
+        var dataToday = stock.data.chart.slice(90,479).map(dayOneData => {
+          return dayOneData.high;
         })
+        var dataTodayFiltered = dataToday.filter(dayOneDataFilter => dayOneDataFilter != 0);
         console.log(dataToday);
         return (
           <div className='stock-price'key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
@@ -35,7 +31,7 @@ class StockList extends Component {
               <div>{stock.data.quote.companyName}</div>
             </div>
             <div className='sparklines'>
-              <Sparklines  data={dataToday} width={400} height={200}>
+              <Sparklines  data={dataTodayFiltered} width={400} height={200}>
                 <SparklinesLine color={stockColor} style={{fill: 'none'}} />
                 <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
               </Sparklines>
