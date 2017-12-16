@@ -21,27 +21,57 @@ class StockInfo extends Component {
       const info = this.props.stockInfo.data.quote;
       return (
         <div className='stock-info'>
-          <div>
-            <div>Stats</div>
+          <div className='stats'>
+            <h3>Stats</h3>
             <div className='info'>
               <div className='stock-info1'>
-                <div>Open {info.open.toFixed(2)}</div>
-                <div>Prev Close {info.previousClose.toFixed(2)}</div>
-                <div>High {info.high.toFixed(2)}</div>
-                <div>Low {info.low.toFixed(2)}</div>
-                <div>Mkt Cap {(info.marketCap/1000000000).toFixed(1)}B</div>
+                <div className='border'>
+                  <span>OPEN</span>
+                  <span>{info.open.toFixed(2)}</span>
+                </div>
+                <div className='border'>
+                  <span>PREV CLOSE</span>
+                  <span>{info.previousClose.toFixed(2)}</span>
+                </div>
+                <div className='border'>
+                  <span>HIGH</span>
+                  <span>{info.high.toFixed(2)}</span>
+                </div>
+                <div className='border'>
+                  <span>LOW</span>
+                  <span>{info.low.toFixed(2)}</span>
+                </div>
+                <div>
+                  <span>MKT CAP</span>
+                  <span>{(info.marketCap/1000000000).toFixed(1)}B</span>
+                </div>
               </div>
               <div className='stock-info2'>
-                <div>Vol {(info.latestVolume/1000000).toFixed(1)}M</div>
-                <div>P/E {info.peRatio}</div>
-                <div>52W High {info.week52High.toFixed(2)}</div>
-                <div>52W Low {info.week52Low.toFixed(2)}</div>
-                <div> Avg Vol {(info.avgTotalVolume/1000000).toFixed(1)}M</div>
+                <div className='border'>
+                  <span>VOLUME</span>
+                  <span>{(info.latestVolume/1000000).toFixed(1)}M</span>
+                </div>
+                <div className='border'>
+                  <span>P/E</span>
+                  <span>{info.peRatio}</span>
+                </div>
+                <div className='border'>
+                  <span>52W HIGH</span>
+                  <span>{info.week52High.toFixed(2)}</span>
+                </div>
+                <div className='border'>
+                  <span>52W LOW</span>
+                  <span>{info.week52Low.toFixed(2)}</span>
+                </div>
+                <div>
+                  <span>AVG VOLUME</span>
+                  <span>{(info.avgTotalVolume/1000000).toFixed(1)}M</span>
+                </div>
               </div>
             </div>
           </div>
-          <div>
-            <div>News</div>
+          <div className='news-container'>
+            <h3>News</h3>
             <div className='news'>
               {this.renderNews()}
             </div>
