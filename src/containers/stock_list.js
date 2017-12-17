@@ -5,6 +5,7 @@ import { selectStock } from '../actions/index';
 import { bindActionCreators} from 'redux';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
+import SearchBar from '../containers/search_bar';
 import StockInfo from '../components/stock_info';
 import StockBar from '../components/stock_bar';
 
@@ -28,7 +29,7 @@ class StockList extends Component {
           <div className='stock-price'key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
             <div className='symbol-name'>
               <div>{stock.data.quote.symbol}</div>
-              <div>{stock.data.quote.companyName}</div>
+              <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
             </div>
             <div className='sparklines'>
               <Sparklines  data={dataTodayFiltered} width={400} height={200}>
@@ -71,7 +72,11 @@ class StockList extends Component {
     if (this.props.stock) {
       return (
         <div className='list-chart'>
-          <div className='stock-list'>{this.renderStockList()}</div>
+          <div className='stock-list'>
+            <SearchBar />
+            <div>{this.renderStockList()}</div>
+          </div>
+
           <div className='chart-info'>
             <StockBar stockInfo={this.props.activeStock}/>
             <div id='Chart'></div>

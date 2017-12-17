@@ -1,10 +1,14 @@
 .stock-bar {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+
   .stock-bar-price {
     font-size: 35px;
   }
 
   .stock-bar-info {
-    margin-bottom: 10px;
+    font-size: 14px;
   }
 
   .stock-bar-info div {

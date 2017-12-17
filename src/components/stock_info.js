@@ -7,8 +7,8 @@ class StockInfo extends Component {
       return this.props.stockInfo.data.news.slice(0,3).map((info, i) => {
         return(
           <div key={i}>
-            <div>{info.headline}</div>
-            <div>{info.source}</div>
+            <div className='news-headline'>{info.headline}</div>
+            <div className='news-source grey'>{info.source}</div>
           </div>
 
         )
@@ -26,45 +26,45 @@ class StockInfo extends Component {
             <div className='info'>
               <div className='stock-info1'>
                 <div className='border'>
-                  <span>OPEN</span>
+                  <span className='grey'>OPEN</span>
                   <span>{info.open.toFixed(2)}</span>
                 </div>
                 <div className='border'>
-                  <span>PREV CLOSE</span>
+                  <span className='grey'>PREV CLOSE</span>
                   <span>{info.previousClose.toFixed(2)}</span>
                 </div>
                 <div className='border'>
-                  <span>HIGH</span>
+                  <span className='grey'>HIGH</span>
                   <span>{info.high.toFixed(2)}</span>
                 </div>
                 <div className='border'>
-                  <span>LOW</span>
+                  <span className='grey'>LOW</span>
                   <span>{info.low.toFixed(2)}</span>
                 </div>
                 <div>
-                  <span>MKT CAP</span>
+                  <span className='grey'>MKT CAP</span>
                   <span>{(info.marketCap/1000000000).toFixed(1)}B</span>
                 </div>
               </div>
               <div className='stock-info2'>
                 <div className='border'>
-                  <span>VOLUME</span>
+                  <span className='grey'>VOLUME</span>
                   <span>{(info.latestVolume/1000000).toFixed(1)}M</span>
                 </div>
                 <div className='border'>
-                  <span>P/E</span>
+                  <span className='grey'>P/E</span>
                   <span>{info.peRatio}</span>
                 </div>
                 <div className='border'>
-                  <span>52W HIGH</span>
+                  <span className='grey'>52W HIGH</span>
                   <span>{info.week52High.toFixed(2)}</span>
                 </div>
                 <div className='border'>
-                  <span>52W LOW</span>
+                  <span className='grey'>52W LOW</span>
                   <span>{info.week52Low.toFixed(2)}</span>
                 </div>
                 <div>
-                  <span>AVG VOLUME</span>
+                  <span className='grey'>AVG VOLUME</span>
                   <span>{(info.avgTotalVolume/1000000).toFixed(1)}M</span>
                 </div>
               </div>

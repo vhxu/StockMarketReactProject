@@ -16,10 +16,10 @@ class StockBar extends Component {
           <div className='stock-bar-price'>${info.latestPrice}</div>
           <div className='stock-bar-info'>
             <div>
-              <div style={{color: stockColor}}>{info.change+' ('+(100 * info.changePercent).toFixed(2) +'%'+') '} <span style={{color:'black'}}> TODAY</span></div>
-              <div style={{fontWeight: "bold"}}>{info.symbol}</div>
+              <div style={{color: stockColor}}>{info.change+' ('+(100 * info.changePercent).toFixed(2) +'%'+') '} <span className='grey'> TODAY</span></div>
+              <div style={{fontWeight: "bold", fontSize: '16px'}}>{info.symbol}</div>
             </div>
-            <div>
+            <div className='grey'>
               <div>{info.primaryExchange}</div>
               <div>{info.companyName} | Common Stock</div>
             </div>

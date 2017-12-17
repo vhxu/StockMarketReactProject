@@ -1,9 +1,11 @@
+@import '_colors';
+
 .list-chart {
   display: flex;
 
   .chart-info {
     flex-basis: 75%;
-    background-color: #ffffff;
+    background-color: $background-white;
     padding: 15px;
   }
 }

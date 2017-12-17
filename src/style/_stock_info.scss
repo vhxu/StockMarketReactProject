@@ -1,9 +1,13 @@
+@import '_colors';
+
 .company-name {
   display: flex;
   justify-content: center;
 }
 
-
+.grey {
+  color: $grey-font;
+}
 
 .stock-info {
   display: flex;
@@ -47,7 +51,7 @@
       }
 
       .border {
-        border-bottom: #dbdbdb 2px solid;
+        border-bottom: $grey 2px solid;
       }
     }
   }
@@ -57,9 +61,15 @@
     margin-left: 30px;
 
     .news {
-      font-size: 14px;
       margin-right: 30px;
 
+      .news-headline {
+        font-size: 14px;
+      }
+
+      .news-source {
+        font-size: 12px;
+      }
     }
   }
 }
