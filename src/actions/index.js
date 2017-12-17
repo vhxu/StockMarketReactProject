@@ -9,7 +9,7 @@ export const STOCK_SELECTED = 'STOCK_SELECTED';
 
 export function fetchStockData(stock) {
   const url = 'https://api.iextrading.com/1.0/stock/'+stock+'/batch?types=quote,news,chart&range=1d&last=10';
-  const request = axios.get(url);
+  const request = axios.get(url)
 
   return {
     type: FETCH_STOCK_DATA,

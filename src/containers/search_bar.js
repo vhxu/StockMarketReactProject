@@ -1,7 +1,7 @@
 import React, {Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchStockData } from '../actions/index';
+import { fetchStockData, selectStock } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     this.props.fetchStockData(this.state.term);
+    this.props.selectStock(this.state.term);
     this.setState({ term: ''});
   }
 
@@ -35,7 +36,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStockData }, dispatch);
+  return bindActionCreators({ fetchStockData, selectStock }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

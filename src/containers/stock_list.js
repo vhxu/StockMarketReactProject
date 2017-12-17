@@ -25,30 +25,50 @@ class StockList extends Component {
         })
         var dataTodayFiltered = dataToday.filter(dayOneDataFilter => dayOneDataFilter != 0);
         console.log(dataToday);
-        return (
-          <div className='stock-price'key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
-            <div className='symbol-name'>
-              <div>{stock.data.quote.symbol}</div>
-              <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
+        if (stock.data.quote.symbol === this.props.activeStock.data.quote.symbol) {
+          return (
+            <div className='stock-price selected' key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
+              <div className='symbol-name'>
+                <div>{stock.data.quote.symbol}</div>
+                <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
+              </div>
+              <div className='sparklines'>
+                <Sparklines  data={dataTodayFiltered} width={400} height={200}>
+                  <SparklinesLine color={stockColor} style={{fill: 'none'}} />
+                  <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
+                </Sparklines>
+              </div>
+              <div className='percent-change'>
+                  <div style={{backgroundColor:stockColor}}>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
+              </div>
             </div>
-            <div className='sparklines'>
-              <Sparklines  data={dataTodayFiltered} width={400} height={200}>
-                <SparklinesLine color={stockColor} style={{fill: 'none'}} />
-                <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
-              </Sparklines>
+          )
+        } else {
+          return (
+            <div className='stock-price' key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
+              <div className='symbol-name'>
+                <div>{stock.data.quote.symbol}</div>
+                <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
+              </div>
+              <div className='sparklines'>
+                <Sparklines  data={dataTodayFiltered} width={400} height={200}>
+                  <SparklinesLine color={stockColor} style={{fill: 'none'}} />
+                  <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
+                </Sparklines>
+              </div>
+              <div className='percent-change'>
+                  <div style={{backgroundColor:stockColor}}>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
+              </div>
             </div>
-            <div className='percent-change'>
-                <div style={{backgroundColor:stockColor}}>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
-            </div>
-          </div>
+          )
+        }
 
-        )
       })
     }
   }
 
-  componentDidUpdate() {
-    //  if(this.props.stock.length > 0) {
+  renderChart() {
+     if(this.props.stock.length > 0) {
       var timeSeries = this.props.activeStock.data.chart;
       console.log(this.props.activeStock);
       var data = timeSeries.map(stockData => {
@@ -64,7 +84,7 @@ class StockList extends Component {
           data: data
         }]
       });
-    // }
+    }
   }
 
 
@@ -75,8 +95,8 @@ class StockList extends Component {
           <div className='stock-list'>
             <SearchBar />
             <div>{this.renderStockList()}</div>
+            <div>{this.renderChart()}</div>
           </div>
-
           <div className='chart-info'>
             <StockBar stockInfo={this.props.activeStock}/>
             <div id='Chart'></div>
