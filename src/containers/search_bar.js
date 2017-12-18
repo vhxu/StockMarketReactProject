@@ -23,10 +23,16 @@ class SearchBar extends Component {
     this.setState({ term: ''});
   }
 
+  componentWillMount() {
+    this.props.fetchStockData('TSLA');
+    this.props.selectStock('TSLA');
+  }
+
   render() {
     return (
       <div className='search-bar'>
         <form onSubmit={this.onFormSubmit}>
+          <div className='search'></div>
           <input placeholder="Enter Stock Symbol" value={this.state.term} onChange={this.enterInput} />
         </form>
       </div>

@@ -5,11 +5,20 @@
   padding-left: 10px;
   align-items: center;
 
+  form {
+    display: flex;
+
+  .search {
+    background: url('../images/icons8-search-21.png');
+    width: 21px;
+    height: 21px;
+    margin-right: 5px;
+  }
     input {
       width: 98%;
       border: none;
       background-color: $background-grey;
-      font-size: 16px;
+      font-size: 18px;
 
     }
 
@@ -20,6 +29,9 @@
     input:focus {
       outline: none;
     }
+  }
+
+
 
 
 }

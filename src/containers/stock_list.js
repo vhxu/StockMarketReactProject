@@ -95,11 +95,11 @@ class StockList extends Component {
           <div className='stock-list'>
             <SearchBar />
             <div>{this.renderStockList()}</div>
-            <div>{this.renderChart()}</div>
+
           </div>
           <div className='chart-info'>
             <StockBar stockInfo={this.props.activeStock}/>
-            <div id='Chart'></div>
+            <div id='Chart'><div>{this.renderChart()}</div></div>
             <StockInfo stockInfo={this.props.activeStock}/>
           </div>
         </div>
