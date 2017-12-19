@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Highcharts from 'highcharts/highstock';
-import { selectStock } from '../actions/index';
+import { selectStock, deleteStock } from '../actions/index';
 import { bindActionCreators} from 'redux';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
@@ -24,10 +24,11 @@ class StockList extends Component {
           return dayOneData.high;
         })
         var dataTodayFiltered = dataToday.filter(dayOneDataFilter => dayOneDataFilter != 0);
+        //var customReference = stock.data.quote.previousClose;
         console.log(dataToday);
         if (stock.data.quote.symbol === this.props.activeStock.data.quote.symbol) {
           return (
-            <div className='stock-price selected' key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
+            <div className='stock-price selected' key={i}>
               <div className='symbol-name'>
                 <div>{stock.data.quote.symbol}</div>
                 <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
@@ -45,20 +46,23 @@ class StockList extends Component {
           )
         } else {
           return (
-            <div className='stock-price' key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
-              <div className='symbol-name'>
-                <div>{stock.data.quote.symbol}</div>
-                <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
+            <div className='stock-price-container'>
+              <div className='stock-price not-selected' key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
+                <div className='symbol-name'>
+                  <div>{stock.data.quote.symbol}</div>
+                  <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
+                </div>
+                <div className='sparklines'>
+                  <Sparklines  data={dataTodayFiltered} width={400} height={200}>
+                    <SparklinesLine color={stockColor} style={{fill: 'none'}} />
+                    <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
+                  </Sparklines>
+                </div>
+                <div className='percent-change'>
+                    <div style={{backgroundColor:stockColor}}>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
+                </div>
               </div>
-              <div className='sparklines'>
-                <Sparklines  data={dataTodayFiltered} width={400} height={200}>
-                  <SparklinesLine color={stockColor} style={{fill: 'none'}} />
-                  <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
-                </Sparklines>
-              </div>
-              <div className='percent-change'>
-                  <div style={{backgroundColor:stockColor}}>{(100 * stock.data.quote.changePercent).toFixed(2) +'%'}</div>
-              </div>
+              <div className='delete' onClick={() => this.props.deleteStock(i)}></div>
             </div>
           )
         }
@@ -115,7 +119,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectStock: selectStock }, dispatch)
+  return bindActionCreators({ selectStock: selectStock, deleteStock: deleteStock }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockList);
