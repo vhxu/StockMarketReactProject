@@ -8,6 +8,11 @@ export const FETCH_STOCK_DATA = 'FETCH_STOCK_DATA';
 export const STOCK_SELECTED = 'STOCK_SELECTED';
 export const DELETE_STOCK = 'DELETE_STOCK';
 
+export const UPDATE_INPUT_VALUE = 'UPDATE_INPUT_VALUE';
+export const CLEAR_SUGGESTIONS = 'CLEAR_SUGGESTIONS';
+export const MAYBE_UPDATE_SUGGESTIONS = 'MAYBE_UPDATE_SUGGESTIONS';
+export const LOAD_SUGGESTIONS_BEGIN = 'LOAD_SUGGESTIONS_BEGIN';
+
 export function fetchStockData(stock) {
   const url = 'https://api.iextrading.com/1.0/stock/'+stock+'/batch?types=quote,news,chart&range=1d&last=10';
   const request = axios.get(url)
@@ -31,5 +36,50 @@ export function fetchStockData(stock) {
    return {
      type: DELETE_STOCK,
      stock_number: number
-   }
+   };
  }
+
+ function escapeRegexCharacters(str) {
+   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+ }
+
+ function getMatchingStockSymbols(value) {
+   const escapedValue = escapeRegexCharacters(value.trim());
+
+   if (escapedValue === '') {
+    return [];
+    }
+
+    const regex = new RegExp('^' + escapedValue, 'i');
+
+    return symbols.filter(symbol => regex.test(symbol.symbol));
+  }
+
+  export function updateInputValue(value) {
+    return {
+      type: UPDATE_INPUT_VALUE,
+      value
+    };
+  }
+
+  export function clearSuggestions() {
+    return {
+      type: CLEAR_SUGGESTIONS
+    };
+  }
+
+  export function loadSuggestionsBegin() {
+    return {
+      type: LOAD_SUGGESTIONS_BEGIN
+    };
+  }
+
+  export function maybeUpdateSuggestions(suggestions, value) {
+    return {
+      type: MAYBE_UPDATE_SUGGESTIONS,
+      suggestions,
+      value
+    };
+  }
+
+ 'https://api.iextrading.com/1.0/ref-data/symbols'
