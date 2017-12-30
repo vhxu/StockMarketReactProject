@@ -46,8 +46,8 @@ class StockList extends Component {
           )
         } else {
           return (
-            <div className='stock-price-container'>
-              <div className='stock-price not-selected' key={i} onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
+            <div className='stock-price-container' key={i}>
+              <div className='stock-price not-selected'  onClick={() => this.props.selectStock(stock.data.quote.symbol)}>
                 <div className='symbol-name'>
                   <div>{stock.data.quote.symbol}</div>
                   <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
