@@ -3,17 +3,6 @@ import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 
 // Imagine you have a list of languages that you'd like to autosuggest.
-const languages = [
-  {
-    name: 'C',
-    year: 1972
-  },
-  {
-    name: 'Elm',
-    year: 2012
-  }
-];
-
 
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -38,7 +27,8 @@ class Example extends React.Component {
     // and they are initially empty because the Autosuggest is closed.
     this.state = {
       value: '',
-      suggestions: []
+      suggestions: [],
+      suggestions2: []
     };
     this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
@@ -46,14 +36,15 @@ class Example extends React.Component {
     this.getSuggestions = this.getSuggestions.bind(this);
     this.getSuggestionValue = this.getSuggestionValue.bind(this);
     this.renderSuggestion = this.renderSuggestion.bind(this);
-    // this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
   }
 
   componentDidMount() {
     const url = 'https://api.iextrading.com/1.0/ref-data/symbols';
     axios.get(url).then(response => {
       this.setState({
-        suggestions: response.data
+        suggestions: response.data,
+        suggestions2: response.data
       });
     })
   }
@@ -68,9 +59,9 @@ class Example extends React.Component {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : this.state.suggestions.filter(symbol =>
+    return inputLength === 0 ? [] : this.state.suggestions2.filter(symbol =>
       symbol.symbol.toLowerCase().slice(0, inputLength) === inputValue
-    );
+    ).slice(0,6);
   };
 
   // Autosuggest will call this function every time you need to update suggestions.
@@ -85,11 +76,11 @@ class Example extends React.Component {
     return suggestion.symbol;
   };
 
-  // onSuggestionSelected() {
-  //   this.setState({
-  //     value: ''
-  //   });
-  // }
+  onSuggestionSelected() {
+    this.setState({
+      value: ''
+    });
+  }
 
   renderSuggestion(suggestion) {
     return suggestion.symbol
@@ -122,7 +113,7 @@ class Example extends React.Component {
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={this.getSuggestionValue}
-        // onSuggestionSelected={this.onSuggestionSelected}
+        onSuggestionSelected={this.onSuggestionSelected}
         renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
       />
