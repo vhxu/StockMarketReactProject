@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchStockData, selectStock } from '../actions/index';
 
+import Example from './auto_suggest';
+
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +37,7 @@ class SearchBar extends Component {
           <div className='search'></div>
           <input placeholder="Enter Stock Symbol" value={this.state.term} onChange={this.enterInput} />
         </form>
+        <Example />
       </div>
 
     )
