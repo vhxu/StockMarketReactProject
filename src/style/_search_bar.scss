@@ -1,37 +1,56 @@
 @import '_colors';
-.search-bar {
-  display: flex;
-  height: 50px;
-  padding-left: 10px;
-  align-items: center;
 
-  form {
+
+form {
     display: flex;
+    background-color: $background-white;
+    align-items: center;
+}
 
-  .search {
-    background: url('../images/icons8-search-21.png');
-    width: 21px;
-    height: 21px;
-    margin-right: 5px;
-  }
-    input {
-      width: 98%;
-      border: none;
-      background-color: $background-grey;
-      font-size: 18px;
+.react-autosuggest__container {
+  position: relative;
+}
 
-    }
+.react-autosuggest__input {
+  width: 280px;
+  height: 30px;
+  padding: 10px 8px;
+  font-size: 18px;
+  background-color: $background-white;
+}
 
-    input::placeholder {
-      color: $grey-font;
-    }
+.react-autosuggest__input--focused {
+  outline: none;
+}
 
-    input:focus {
-      outline: none;
-    }
-  }
+.react-autosuggest__suggestions-container {
+  display: none;
+}
 
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 51px;
+  width: 298px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
 
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
 
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 8px;
+}
 
+.react-autosuggest__suggestion--highlighted {
+  background-color: $grey;
 }
