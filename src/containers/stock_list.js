@@ -97,9 +97,8 @@ class StockList extends Component {
       return (
         <div className='list-chart'>
           <div className='stock-list'>
-            <SearchBar />
+            <SearchBar/>
             <div>{this.renderStockList()}</div>
-
           </div>
           <div className='chart-info'>
             <StockBar stockInfo={this.props.activeStock}/>
