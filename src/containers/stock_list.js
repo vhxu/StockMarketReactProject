@@ -34,7 +34,7 @@ class StockList extends Component {
                 <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
               </div>
               <div className='sparklines'>
-                <Sparklines  data={dataTodayFiltered} width={400} height={200}>
+                <Sparklines  data={dataTodayFiltered} width={400} height={100}>
                   <SparklinesLine color={stockColor} style={{fill: 'none'}} />
                   <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
                 </Sparklines>
@@ -53,7 +53,7 @@ class StockList extends Component {
                   <div className='grey' style={{fontSize:'14px'}}>{stock.data.quote.companyName}</div>
                 </div>
                 <div className='sparklines'>
-                  <Sparklines  data={dataTodayFiltered} width={400} height={200}>
+                  <Sparklines  data={dataTodayFiltered} width={400} height={100}>
                     <SparklinesLine color={stockColor} style={{fill: 'none'}} />
                     <SparklinesReferenceLine type='avg' style={{stroke:'grey', strokeDasharray: '2, 2'}}/>
                   </Sparklines>

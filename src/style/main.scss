@@ -5,9 +5,9 @@
 @import '_colors';
 
 body {
-  max-width: 1200px;
-  max-height: 1200px;
-  background-color: $background-grey;
+  // max-width: 1200px;
+  // max-height: 1200px;
+  // background-color: $background-grey;
   margin: 0;
   padding: 0;
 }
@@ -18,24 +18,111 @@ body {
 
 @media screen and (max-width: 450px) {
   .list-chart {
-    display: flex;
+    // display: flex;
+
     flex-wrap: wrap;
+    width: 100%;
   }
   .stock-list {
     width: 100%;
   }
+
   .chart-info {
     width: 100%;
   }
 
   .stock-info {
-    display: flex;
     flex-wrap: wrap;
   }
   .stats {
     width: 100%;
   }
-  .chart-info {
+  .news-container {
     width: 100%;
+  }
+  .react-autosuggest__suggestions-container--open {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width: 900px) {
+  .list-chart {
+    width: 100%;
+  }
+  .stock-list {
+    width: 25%;
+  }
+  .chart-info {
+    width: 75%;
+  }
+  .sparklines {
+    display: none;
+  }
+  .stock-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .stats {
+    width: 47%;
+  }
+  .news-container {
+    width: 47%;
+  }
+  .react-autosuggest__suggestions-container--open {
+    width: 24.5%;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+  .list-chart {
+    width: 100%;
+  }
+  .stock-list {
+    width: 25%;
+  }
+
+  .chart-info {
+    width: 75%;
+  }
+  .stock-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .stats {
+    width: 47%;
+  }
+  .news-container {
+    width: 47%;
+  }
+  .react-autosuggest__suggestions-container--open {
+    width: 24.5%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .list-chart {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .stock-list {
+    width: 25%;
+  }
+
+  .chart-info {
+    width: 75%;
+  }
+  .stock-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .stats {
+    width: 47%;
+  }
+  .news-container {
+    width: 47%;
+  }
+  .react-autosuggest__suggestions-container--open {
+    width: 24.5%;
   }
 }
