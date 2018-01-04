@@ -14,6 +14,7 @@
 }
 
 .stock-list {
+  background-color: $background-grey;
   // width: 25%;
   // flex-basis: 25%;
   // box-shadow: inset 0 0 2px 0 rgba(0, 0, 0, 0.14),
@@ -36,6 +37,7 @@
 .stock-price-container {
   display: flex;
   width: 100%;
+  background-color: $background-grey;
 }
 
 .delete {
