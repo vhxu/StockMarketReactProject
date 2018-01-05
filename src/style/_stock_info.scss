@@ -11,18 +11,11 @@
 
 .stock-info {
   display: flex;
-  // justify-content: space-around;
-
-
 
   .stats{
-    // flex: 1;
-    // margin-left: 30px;
-    // width: 100%;
 
     .info {
       display: flex;
-      // margin-right: 30px;
 
       .stock-info1 {
         flex: 1;
@@ -59,11 +52,8 @@
   }
 
   .news-container {
-    // flex: 1;
-    // margin-left: 30px;
 
     .news {
-      // margin-right: 30px;
 
       .news-headline {
         font-size: 14px;

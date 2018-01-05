@@ -2,31 +2,26 @@
 
 
 form {
-    // display: flex;
     background-color: $background-white;
-    // align-items: center;
-    // width: 93%;
     width: 100%;
-
 }
 
 .react-autosuggest__container {
-  // position: relative;
   width: 100%;
-
 }
 
 .react-autosuggest__input {
-  // margin: 0;
-
-  width: 96%;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  box-shadow: none;
+  width: 98%;
   height: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 8px;
   font-size: 16px;
   background-color: $background-white;
-  // outline: 1px black solid;
 }
 
 .react-autosuggest__input--focused {
@@ -42,7 +37,7 @@ form {
   position: absolute;
   top: 51px;
   width: 100%;
-  // outline: 1px solid #aaa;
+  outline: 1px solid #aaa;
   background-color: #fff;
   font-size: 16px;
   border-bottom-left-radius: 4px;

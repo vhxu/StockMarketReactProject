@@ -13,7 +13,7 @@ class StockList extends Component {
 
   renderStockList() {
     if (this.props.stock.length > 0) {
-      console.log(this.props.stock);
+      // console.log(this.props.stock);
       return this.props.stock.map((stock, i) => {
         if (stock.data.quote.change > 0) {
           var stockColor = '#29ce9c';
@@ -24,8 +24,7 @@ class StockList extends Component {
           return dayOneData.high;
         })
         var dataTodayFiltered = dataToday.filter(dayOneDataFilter => dayOneDataFilter != 0);
-        //var customReference = stock.data.quote.previousClose;
-        console.log(dataToday);
+        // console.log(dataToday);
         if (stock.data.quote.symbol === this.props.activeStock.data.quote.symbol) {
           return (
             <div className='stock-price selected' key={i}>
@@ -74,11 +73,11 @@ class StockList extends Component {
   renderChart() {
      if(this.props.stock.length > 0) {
       var timeSeries = this.props.activeStock.data.chart;
-      console.log(this.props.activeStock);
+      // console.log(this.props.activeStock);
       var data = timeSeries.map(stockData => {
         return [new Date(stockData.date).getTime(), stockData.close];
       })
-      console.log(data);
+      // console.log(data);
       Highcharts.stockChart('Chart', {
         rangeSelector: {
           selected: 1
