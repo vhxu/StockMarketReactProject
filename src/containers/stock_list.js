@@ -24,8 +24,8 @@ class StockList extends Component {
           return dayOneData.high;
         })
         var dataTodayFiltered = dataToday.filter(dayOneDataFilter => dayOneDataFilter > 0);
-        console.log(dataToday);
-        console.log(dataTodayFiltered);
+        // console.log(dataToday);
+        // console.log(dataTodayFiltered);
         if (stock.data.quote.symbol === this.props.activeStock.data.quote.symbol) {
           return (
             <div className='stock-price selected' key={i}>
