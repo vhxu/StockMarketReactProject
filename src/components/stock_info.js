@@ -19,6 +19,7 @@ class StockInfo extends Component {
   render() {
     if (this.props.stockInfo) {
       const info = this.props.stockInfo.data.quote;
+      console.log(info.open.toFixed(2));
       return (
         <div className='stock-info'>
           <div className='stats'>
@@ -35,11 +36,11 @@ class StockInfo extends Component {
                 </div>
                 <div className='border'>
                   <span className='grey'>HIGH</span>
-                  <span>{info.high.toFixed(2)}</span>
+                  {/*<span>{info.high.toFixed(2)}</span> */}
                 </div>
                 <div className='border'>
                   <span className='grey'>LOW</span>
-                  <span>{info.low.toFixed(2)}</span>
+                  {/*<span>{info.low.toFixed(2)}</span> */}
                 </div>
                 <div>
                   <span className='grey'>MKT CAP</span>

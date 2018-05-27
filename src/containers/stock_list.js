@@ -94,6 +94,7 @@ class StockList extends Component {
 
   render() {
     if (this.props.stock) {
+      console.log(this.props.activeStock);
       return (
         <div className='list-chart'>
           <div className='stock-list'>
