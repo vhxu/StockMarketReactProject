@@ -25,7 +25,8 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount() {
-    const url = 'https://api.iextrading.com/1.0/ref-data/symbols';
+    const url = 'https://cloud.iexapis.com/stable/ref-data/symbols?token=pk_2777d1c46940428293b623f5e605b0e0';
+          //'https://api.iextrading.com/1.0/ref-data/symbols';
     axios.get(url).then(response => {
       this.setState({
         suggestions: response.data,
@@ -79,7 +80,8 @@ class SearchBar extends React.Component {
 
 
   onSuggestionsClearRequested() {
-    const url = 'https://api.iextrading.com/1.0/ref-data/symbols';
+    const url = 'https://cloud.iexapis.com/stable/ref-data/symbols?token=pk_2777d1c46940428293b623f5e605b0e0';
+          //'https://api.iextrading.com/1.0/ref-data/symbols';
     axios.get(url).then(response => {
       this.setState({
         suggestions: response.data
